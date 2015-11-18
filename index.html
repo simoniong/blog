@@ -8,7 +8,7 @@ layout: default
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       </h2>
       <p class="entry-meta">
-      Posted on <a class="entry-date" href="date.html">{{ post.date | date: "%b %-d, %Y" }}</a>
+      Posted on {{ post.date | date: "%b %-d, %Y" }}
       </p>
     </header>
     <div class="entry-description">
