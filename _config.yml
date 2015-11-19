@@ -11,10 +11,12 @@ email: manin.iong@gmail.com
 author: Simon Iong
 description: > # this means to ignore newlines until "baseurl:"
   Simon Iong's personal thoughts on software development & life hacking
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://simoniong.info" # the base hostname & protocol for your site
+baseurl: ""
+url: "http://simoniong.info"
 twitter_username: simoniong
 github_username: simoniong
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
