@@ -13,13 +13,8 @@ layout: default
     </header>
     <div class="entry-description">
       <p>
-        {{ post.content | split:'<!--break-->' | first }}
+        {{ post.excerpt }}
       </p>
-      {% if post.content contains '<!--break-->' %}
-        <div class="pull-right">
-          <a href="{{ post.url }}" class="btn btn-primary">read more</a>
-        </div>
-      {% endif %}
     </div>
   </section> <!-- /.post -->
 {% endfor %}
