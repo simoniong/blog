@@ -20,3 +20,5 @@ github_username: simoniong
 markdown: kramdown
 kramdown:
   input: GFM
+
+excerpt_separator: "\n\n\n"
