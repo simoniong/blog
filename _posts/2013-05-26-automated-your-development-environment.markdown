@@ -12,6 +12,8 @@ It’s really headache for me to get back to work before fix those problems. And
 
 Recently, I am thinking to get rid of those mess with Mac OS dependence, and wanna automatic my development env in Mac OS or other OS like Windows. I have a Windows XP desktop and linux base VM, using putty from Windows to do development job at work, and also got a MacBook Pro for daily hacking or development at home. I want the same environment both in Windows & MacOS, same editor setting(vim), same ruby version ( using rvm ) and hope that I can easily reset/clone all my environment in a few minutes so that I can get back to work ASAP.
 
+
+
 Inspire by [rails-dev-box](http://github.com/rails/rails-dev-box) and [this post](http://sidekicksrc.com/post/if-you-love-automation-why-is-your-development-environment-manual/), I have come up a solution.
 
 Vagrant + Virtual Box + Chef-solo

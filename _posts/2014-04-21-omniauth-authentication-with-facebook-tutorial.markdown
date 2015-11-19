@@ -8,8 +8,9 @@ categories: omniauth facebook
 
 This is a basic tutorial using Ruby on Rails 4 on how to make facebook login enable in your website by [Omniauth](http://intridea.github.io/omniauth/), the Multi-Provider Authentication for Web Application, and it's very easy to extend this feature to support other service, such as using google or twitter account login to your apps.
 
-
 First of all, in order to support your web application user to login by facebook account, you need to create a facebook app, and get two specific key, FACEBOOK_APP_ID and FACEBOOK_SECRET, This tutorial assume you have already got it, and then let's build rails app first
+
+
 
 ``` bash
 $ rails new omniauth_facebook_example
@@ -17,16 +18,19 @@ $ cd omniauth_facebook_example
 ```
 
 add omniauth-facebook gem in your Gemfile file
-``` ruby Gemfile
+
+``` ruby
 gem 'omniauth-facebook'
 ```
 
 then make sure your have install this gem by bundle
+
 ``` bash
  $bundle install
 ```
 
 and let's make a home page for your web application.
+
 ``` bash
  $rails generate controller home index
       create  app/controllers/home_controller.rb
@@ -44,12 +48,15 @@ and let's make a home page for your web application.
 ```
 
 and then modify your route file, point your home page to home#index
-``` ruby config/route.rb
+
+``` ruby
+#file config/route.rb
   #get "home/index"
   root "home#index"
 ```
 
 let's try to make sure all these steps work, by using rails server command
+
 ``` bash
 $ rails server
 ```
@@ -62,7 +69,8 @@ If you point to your browser with "localhost:3000", then get the result like the
 
 Next step, we need to make a initializer for omniauth, create a file in config/initializers/omniauth.rb, and tell omniauth what the secret is. You need to tell omniauth to use which provide, and tell it to use the secret key that you get from Facebook. For security issue, we just use bash Environment variable to setup this two key, and beware of that, we need to setup these two key before we start web server so that Omniauth can accept it.
 
-``` ruby config/initializers/omniauth.rb
+``` ruby
+#file config/initializers/omniauth.rb
 OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -80,6 +88,7 @@ $ rails generate model User uid:string name:string oauth_token:string oauth_expi
 ```
 
 This command will create two file, one migration file, and a model file. Let's migrate it, so that users table is populate in our database.
+
 ``` bash
 $ rake db:migrate
 ==  CreateUsers: migrating ====================================================
@@ -89,7 +98,9 @@ $ rake db:migrate
 ```
 
 And we need a method to create user records, let's do it!
-``` ruby app/models/user.rb
+
+``` ruby
+#file app/models/user.rb
 class User < ActiveRecord::Base
   def self.from_omniauth( auth )
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -152,7 +163,8 @@ As a tutorial, we just need basic parameter ( uid, provider, name, token, expire
 
 For a typical facebook auth procedure, user will first access /auth/facebook, then browser will redirect user to facebook to enter credentials, after authentication on facebook, browser will redirect back to /auth/facebook/callback, in this callback route, we can create a user record, by User.from_omniauth, and then sign in this user. So let's create these route first.
 
-``` ruby config/route.rb
+``` ruby
+#file config/route.rb
 OmniauthFacebookExample::Application.routes.draw do
   #get "home/index"
   root "home#index"
@@ -170,7 +182,8 @@ First, we point auth/facebook/callback to sessions#create, which we will talk ab
 
 If you need more authentication methods provide by services like twitter or github, you may change the callback path with:
 
-``` ruby config/route.rb
+``` ruby
+#file config/route.rb
 OmniauthFacebookExample::Application.routes.draw do
   ...
   #get 'auth/facebook/callback', to: 'sessions#create'
@@ -183,7 +196,8 @@ OmniauthFacebookExample::Application.routes.draw do
 
 Let's create a session controller to deal with sign in / out mechanism.
 
-``` ruby app/controllers/sessions_controller.rb
+``` ruby
+#file app/controllers/sessions_controller.rb
 class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
@@ -204,7 +218,8 @@ When user sign out, we just delete it's record from session, then redirect back 
 
 Before we process to create a link to let user sign-in using facebook, we need a helper method, to identify if current user is login or not. Let's make it.
 
-``` ruby app/controllers/application_controller.rb
+``` ruby
+#file app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -223,7 +238,7 @@ This helper method called current_user, if current session have user_id, then we
 
 The final step will be to create a link for user to sign in or sign out. For demonstrated easily, I just paste the code under layout file. It's a bit of ugly, but It's enough for testing purpose.
 
-``` ruby app/views/layouts/application.html.erb
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -252,6 +267,7 @@ The final step will be to create a link for user to sign in or sign out. For dem
 When the user have been log in, it will show user's name and "Sign out" link provided, otherwise, It will have "Sign in with Facebook" only.
 
 Before we test, we need to populate two variable into bash, and then start web server!
+
 ``` bash
 $ export FACEBOOK_APP_ID=1234567890123412
 $ export FACEBOOK_SECRET=134123412123412341234123

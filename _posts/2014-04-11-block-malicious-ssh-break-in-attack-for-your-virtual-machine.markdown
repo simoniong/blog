@@ -20,6 +20,8 @@ Apr 10 05:34:38 do sshd[4848]: Received disconnect from 203.81.22.35: 11: Bye By
 Apr 10 05:34:41 do sshd[4850]: Address 203.81.22.35 maps to mail.ckgsb.edu.cn, but this does not map back to the address - POSSIBLE BREAK-IN ATTEMPT!
 ```
 
+
+
 It seems the attacker use brute force to generate password token, and try to break into my virutual machine for every 3 sec. And this block my GitLab service too!
 
 This kind of brute force attach can be easily resloved by Failtoban. Failtoban keep monitoring your service logs to identify malicious attack, and update firewall rules, reject the related Ip addresses for a specific amount of time. It work for apache, ssh, and other services.

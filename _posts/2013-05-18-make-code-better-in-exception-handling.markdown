@@ -13,6 +13,8 @@ The purpose of writing better code is to reduce WTFs/min during code review sess
 {% endblockquote %}
 {% img http://www.osnews.com/images/comics/wtfm.jpg %}
 
+
+
 If the code being written is really bad and difficult to read, then this funny scenario will always happend during code review session. If there's no code-review session in your company culture, somebody will still put long fingers to authors while handling your legacy messy-and-shitty code.
 
 ## Purpose of Exception hanlding
@@ -26,7 +28,7 @@ Unfortunatly, there's a lot of anti-use-pattern cases, which make this two flows
 ### return error code instead of raise exception
 In some early stages programming languages, such as C, there's no exception mechanism, one need to check the return code after calling methods, and determine what need to do in next step. After introduce exception handling, people keep writting code in this ancient way. Following code is a typical anti-use example.
 
-``` ruby atm.rb
+``` ruby
 class ATM
   def initialize( terminal )
     @terminal = terminal 
@@ -81,7 +83,7 @@ class ATM
 end
 ```
 
-``` ruby terminal.rb
+``` ruby
 class Terminal
   def withdraw( withdraw_amount )
     ... 
@@ -138,7 +140,7 @@ end
 
 Back to our ATM example, do you have some question mark while reading method "exception_handling_for_withdraw"? Someone may ask: What does E32Error mean? Why ATM need to take care of DABError? WTF is DABError? The mistake here is to raise exceptions in receiver's perspective. But actually, the better way is to raise the exception in the caller's perspective. Here's a refactor version of writing the code in caller ( ATM )'s perspective.
 
-``` ruby atm.rb
+``` ruby
 class ATM
   def withdraw( amount )
     begin
@@ -163,7 +165,7 @@ class ATM
 end
 ```
 
-``` ruby terminal.rb
+``` ruby
 class Terminal
   def withdraw( amount )
     begin

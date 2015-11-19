@@ -7,6 +7,7 @@ categories: [ruby, debug]
 ---
 
 When you try to debug in a chain methods like following example:
+
 ``` ruby
 [1,2,3,4,5].collect { |x| x + 1 }.inject { |sum, x| sum + x }
 ```

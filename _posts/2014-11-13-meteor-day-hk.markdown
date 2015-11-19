@@ -14,6 +14,8 @@ One of the amazing presentation held by Chris Hitchcott (@hitchcott) is really f
 
 For more information about the technical stuff for Chris presentation, please refer to [TapEvent](http://tapevents.com/)
 
+
+
 ##What's Meteor actually?
 Meteor is a full stack framework which is built in pure Javascript! while the key different among other full stack framework like `Ruby on Rails` is: Meteor is super easy to build a real-time web application! 
 
