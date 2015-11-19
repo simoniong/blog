@@ -8,7 +8,7 @@ categories: meteor
 
 last week, I attended a very impressive Meteor js meetup in Hong Kong.
 
-##Present your idea reactively!
+## Present your idea reactively!
 
 One of the amazing presentation held by Chris Hitchcott (@hitchcott) is really fascinating! While at the very begining of the presentation, he ask everyone in the venue to subscribe to his presentation App using any device! ( Yep, It's a web app, and build in Meteor! ). And once your device is subscribed ( For me, it's my laptop ), you will have a live presentation in your device's screen too! When chris move one slide forward, your subscribed device will also move a slide forward! This is really a reactive and creative present way for you! And if the slide in Chirs's side is asking a question, everyone can answer this questions in their subscribed device, and within limit time set by Chris. If your answer is correct, you will win a socre, And we can have a summary up after presentation! ( Well, I am not going to tell anyone I am one of the winners in Meteor Day HK! ). 
 
@@ -16,7 +16,7 @@ For more information about the technical stuff for Chris presentation, please re
 
 
 
-##What's Meteor actually?
+## What's Meteor actually?
 Meteor is a full stack framework which is built in pure Javascript! while the key different among other full stack framework like `Ruby on Rails` is: Meteor is super easy to build a real-time web application! 
 
 Typical way to build a real-time web application, for example, to insert a new row in a table presented in the website should include the following flow:
@@ -41,7 +41,7 @@ And the most amazing thing should be: you don't need to write javascript to hand
  
 For anyone who is interesting in Meteor, and want to dig more about it, I personally recommended a book called [`Discover Meteor`](https://www.discovermeteor.com/), and now it's free for first 8 chapters! This should be good enough for begining! Well, I am still a beginner in Meteor :P
 
-##More from the Meetup
+## More from the Meetup
 There's one interesting presentation ( by Jason Li ) to talk about build a workable prototype using Meteor withing 1 month ( more or less ). One of the key things to build a start-up prototype so fast is to eliminate down the time to implement the key features. While meteor is really a good try for it, and he also give us some tips. One of the key thing is to out-source as many as features to external service! For example, he doesn't want to handle the File upload feature in Meteor, so he integrated the system with [Filepicker](https://www.filepicker.io/). And try to do some lo-fi Admin first, since it's not a customer-oriented interface, the most important thing should be: Roll-out your idea as fast as your can!
 
 There is a lot Saas services for us to eliminate this time to build prototype in the early stage of start-up:
